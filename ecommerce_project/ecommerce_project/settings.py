@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
-from pathlib import Path
 import os
+from pathlib import Path
 from dotenv import load_dotenv
+
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&=v+#%5%^)$1d8!vb=bam+q5ci@9fz*y0=)s1s3d!kl91)cg+w'
+SECRET_KEY = 'django-insecure--lz&g9@dl=$8=8ij6_bh8jy%-ld0ga=ocxr!$wg7w7$i=4(^sy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users.apps.UsersConfig',
-    'products.apps.ProductsConfig'
+    'rest_framework',
+    'products.apps.ProductsConfig',
+    'categories.apps.CategoriesConfig',
+    'api.apps.ApiConfig',
+    'customers.apps.CustomersConfig'
 ]
 
 MIDDLEWARE = [
@@ -79,12 +82,12 @@ WSGI_APPLICATION = 'ecommerce_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'ENGINE':os.getenv('DATABASE_ENGINE'),
         'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+        'USER':os.getenv('DATABASE_USER'),
+        'PASSWORD':os.getenv('DATABASE_PASSWORD'),
+        'HOST':os.getenv('DATABASE_HOST'),
+        'PORT':os.getenv('DATABASE_PORT')
     }
 }
 
