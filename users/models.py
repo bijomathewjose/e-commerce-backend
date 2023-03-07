@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.core.validators import EmailValidator
+from products.models import Product
 # Create your models here.
 
 class User(models.Model):
@@ -13,6 +14,7 @@ class User(models.Model):
     mobile_num=models.IntegerField(null=False)
     admin=models.BooleanField(default=False,null=False)
     created_date=models.DateTimeField(auto_now_add=True,null=False)
+    shopping=models.ManyToManyField(Product)
 
     def set_password(self,password):
         self.password=make_password(password)
