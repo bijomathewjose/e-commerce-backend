@@ -1,6 +1,8 @@
 import uuid
 from django.db import models
 from django.core.validators import URLValidator
+from datetime import date
+from django.utils import timezone
 
 # Create your models here.
 class Category(models.Model):
@@ -15,5 +17,13 @@ class Product(models.Model):
     category=models.ManyToManyField(Category)
     stock=models.IntegerField(default=0)
     active=models.BooleanField()
-    register_date=models.DateTimeField(auto_now=True,null=False)
-    
+    register_date=models.DateField(default=date.today,null=False)
+
+    def validate_registration(self):
+        two_months_ago = timezone.now() - timezone.timedelta(days=60)
+        if self.registration_date > two_months_ago:
+            self.active = False
+
+    def save(self, *args, **kwargs):
+        self.validate_registration()
+        super().save(*args, **kwargs)    
