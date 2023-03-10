@@ -12,7 +12,7 @@ class Products(models.Model):
     stock=models.IntegerField(default=0,null=False)
     categories=models.ManyToManyField(Categories)
     is_active=models.BooleanField(default=True,null=False)
-    registration_date=models.DateTimeField(auto_now_add=True,null=False)
+        
 
     def is_registration_active(self):
         time_limit=date.today()-timedelta(days=60)
